@@ -104,7 +104,7 @@ def parse(message):
 
     with ThreadPoolExecutor(max_workers=20) as executor:
         futures = []
-        while len(found) < 15 and attempts < MAX_ATTEMPTS:
+        while len(found) < 30 and attempts < MAX_ATTEMPTS:
             attempts += 1
             gift = random.choice(GIFTS)
             nft_id = random.randint(30000, 80000)
@@ -145,3 +145,4 @@ def parse(message):
 if __name__ == '__main__':
     print("🟢 Парсер запущен!")
     bot.infinity_polling()
+
