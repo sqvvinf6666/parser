@@ -100,7 +100,7 @@ def parse(message):
 
     found = []
     attempts = 0
-    MAX_ATTEMPTS = 150
+    MAX_ATTEMPTS = 300
 
     with ThreadPoolExecutor(max_workers=20) as executor:
         futures = []
@@ -117,7 +117,7 @@ def parse(message):
                         found.append(data)
 
                 bot.edit_message_text(
-                    f"⏳ Найдено: {len(found)}/15\n"
+                    f"⏳ Найдено: {len(found)}/30\n"
                     f"🔎 Проверено: {attempts} NFT",
                     message.chat.id,
                     progress_msg.message_id
@@ -125,7 +125,7 @@ def parse(message):
 
     if found:
         result = "👤 *Найденные владельцы NFT:*\n\n"
-        for i, item in enumerate(found[:15], 1):
+        for i, item in enumerate(found[:30], 1):
             result += f"{i} {item['gift_with_link']} \| @{clean_text(item['username'])} \| {item['owner_name']}\n"
 
         bot.send_message(
@@ -145,4 +145,5 @@ def parse(message):
 if __name__ == '__main__':
     print("🟢 Парсер запущен!")
     bot.infinity_polling()
+
 
